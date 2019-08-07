@@ -5,7 +5,10 @@ services:
   db:
     image: mysql:5.7
     volumes:
-      - db_data:/var/lib/mysql
+    # Use this option to persist the MySQL DBs in a shared volume.
+      - ./mysqldata:/var/lib/mysql:rw,delegated
+    # Use this option to persist the MySQL DBs in a data volume.
+    #  - db_data:/var/lib/mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
